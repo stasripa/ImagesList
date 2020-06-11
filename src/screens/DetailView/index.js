@@ -57,7 +57,7 @@ class DetailView extends React.PureComponent<Props> {
     const { pictureDetails } = this.props
     return (
       <Image
-        source={{uri: pictureDetails.full_picture}}
+        source={{uri: pictureDetails.full_picture ? pictureDetails.full_picture : pictureDetails.cropped_picture}}
         style={isSmall ? styles.smallImage : styles.imageStyle} />
     )
   }

@@ -25,7 +25,7 @@ export function fetchPictureDetails (imageId: number) {
     dispatch(pictureIsLoading())
     const pictureDetails = await getPictureDetails(realId)
     if (pictureDetails === null) {
-      dispatch(fetchFailed('sad story'))
+      dispatch(fetchFailed('Connection error occurred.'))
     }
     dispatch(fetchPictureSuccess(pictureDetails))
   }

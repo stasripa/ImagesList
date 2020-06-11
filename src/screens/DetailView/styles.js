@@ -7,7 +7,7 @@ const styles: any = StyleSheet.create({
     flex: 1,
   },
   imageContainer: {
-    flex: 3,
+    flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
@@ -16,10 +16,6 @@ const styles: any = StyleSheet.create({
     flex: 1,
     width: width,
     height: height,
-  },
-  smallImage: {
-    width: 150,
-    height: 150,
   },
   backButton: {
     position: 'absolute',
@@ -48,25 +44,6 @@ const styles: any = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-  },
-  filterItem: {
-    marginHorizontal: 8,
-  },
-  filtersContainer: {
-    flex: 1,
-    height: 50,
-    alignContent: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.2)',
-    marginBottom: 58,
-  },
-  activityIndicatorViewStyle: {
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 20,
-    backgroundColor: 'rgba(0, 0, 0, 0.2)',
-  },
+  }
 })
 export default styles

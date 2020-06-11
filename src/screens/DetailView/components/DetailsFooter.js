@@ -12,24 +12,15 @@ import shareImage from './images/ShareThis.png'
 
 type Props = {
   shareCallback: Function,
+  colorSwitchCallback: Function,
   pictureDetails: Object,
-  toggleFilters: Function,
 }
 
 class DetailsFooter extends React.PureComponent<Props> {
-  share = () => {
-    const { pictureDetails, shareCallback } = this.props
-    if (!pictureDetails) {
-      return null
-    }
-
-    shareCallback(pictureDetails.id)
-  }
-
   render () {
-    const { pictureDetails, toggleFilters } = this.props
+    const { shareCallback, applyFilterCallback, pictureDetails } = this.props
     if (!pictureDetails) return null
-
+    const imageId = pictureDetails.id
     return (
       <View style={styles.detailView}>
         <View>
@@ -39,7 +30,7 @@ class DetailsFooter extends React.PureComponent<Props> {
         <View style={styles.row}>
           <TouchableOpacity
             style={{marginRight: 10}}
-            onPress={toggleFilters}
+            onPress={() => applyFilterCallback()}
           >
             <Image style={styles.detailViewImage}
               resizeMode='cover'
@@ -47,7 +38,7 @@ class DetailsFooter extends React.PureComponent<Props> {
           </TouchableOpacity>
           <TouchableOpacity
             style={{alignSelf: 'flex-end'}}
-            onPress={this.share}
+            onPress={() => shareCallback(imageId)}
           >
             <Image style={styles.detailViewImage}
               resizeMode='cover'

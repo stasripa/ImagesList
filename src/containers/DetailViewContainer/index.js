@@ -31,9 +31,9 @@ class DetailViewContainer extends React.Component<Props, State> {
   }
 
   componentDidMount () {
-    const { fetchPictureDetails, hiResImage, navigation } = this.props
+    const { navigation, fetchPictureDetails } = this.props
     const { pictureDetails } = navigation.state.params
-    if (!hiResImage(pictureDetails.id)) {
+    if (!this.props.hiResImage(pictureDetails.id)) {
       fetchPictureDetails(pictureDetails.id)
     }
   }
@@ -45,6 +45,10 @@ class DetailViewContainer extends React.Component<Props, State> {
     }
   }
 
+  applyFilter = (type): void => {
+    // TODO: implement apply image filter function
+  }
+
   render () {
     const { pictureDetails } = this.props.navigation.state.params
     const { isLoading, hiResImage } = this.props
@@ -54,10 +58,12 @@ class DetailViewContainer extends React.Component<Props, State> {
       ...fullImage,
     }
 
+
     return <DetailView
       pictureDetails={fullDetails}
       shareCallback={this.share}
       isLoading={isLoading}
+      applyFilterCallback={this.applyFilter}
     />
   }
 }

@@ -33,6 +33,7 @@ class HomeContainer extends React.Component<Props, State> {
   }
 
   onRefresh (): void {
+    console.log('CALLING REFRESH')
     this.props.fetchPictures(1, true)
   }
 

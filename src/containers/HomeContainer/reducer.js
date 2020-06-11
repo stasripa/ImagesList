@@ -1,5 +1,5 @@
 // @flow
-import {CLEAR_PICTURES, FETCH_FAILED, PICTURES_FETCH_REQUESTED, PICTURES_FETCH_SUCCESS} from '../HomeContainer/actions'
+import {CLEAR_PICTURES, PICTURES_FETCH_REQUESTED, PICTURES_FETCH_SUCCESS} from '../HomeContainer/actions'
 
 const initialState = {
   pictures: [],
@@ -13,6 +13,7 @@ export default function (state: any = initialState, action: Object) {
 
   switch (type) {
     case CLEAR_PICTURES: {
+      console.log('GOT CLEAR PICTURES ACTION')
       return {
         ...state,
         pictures: [],
@@ -27,14 +28,6 @@ export default function (state: any = initialState, action: Object) {
       }
     }
 
-    case FETCH_FAILED: {
-      return {
-        ...state,
-        isLoading: false,
-        errorMessage: payload,
-      }
-    }
-
     case PICTURES_FETCH_SUCCESS: {
       const { pictures, hasMore} = payload
       for (let i = 0; i < pictures.length; i++) {
@@ -46,7 +39,6 @@ export default function (state: any = initialState, action: Object) {
         page: state.page + 1,
         hasMore,
         isLoading: false,
-        errorMessage: '',
       }
     }
 

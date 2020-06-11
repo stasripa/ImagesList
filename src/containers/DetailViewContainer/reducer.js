@@ -17,8 +17,7 @@ export default function (state: any = initialState, action: Object) {
       }
     }
 
-    default: {
+    default:
       return state
-    }
   }
 }

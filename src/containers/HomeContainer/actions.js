@@ -1,6 +1,5 @@
 import { getPictures } from '../../services/API'
 import type { ActionWithPayload, ActionWithoutPayload } from '../../types/actions'
-import { Alert } from 'react-native'
 
 export const PICTURES_FETCH_REQUESTED = 'PICTURES_FETCH_REQUESTED'
 export const PICTURES_FETCH_SUCCESS = 'PICTURES_FETCH_SUCCESS'
@@ -30,11 +29,9 @@ export function fetchListSuccess (pictures: Array<Object>, page: number, hasMore
   }
 }
 
-export function fetchFailed (errorMessage: string): ActionWithPayload {
-  Alert.alert('Error', errorMessage)
+export function fetchListFailed (errorMessage: string): ActionWithPayload {
   return {
-    type: FETCH_FAILED,
-    payload: errorMessage,
+    // TODO: implement me
   }
 }
 
@@ -43,15 +40,11 @@ export function fetchPictures (page: number, isRefresh: boolean = false): Action
   const correctIsRefresh = isRefresh
   return async dispatch => {
     dispatch(listIsLoading())
-    const picturesResult = await getPictures(correctPage)
-    if (picturesResult === null) {
-      dispatch(fetchFailed('Connection error occurred.'))
-    } else {
-      if (correctIsRefresh) {
-        dispatch(clearPictures())
-      }
-      const {pictures, page, hasMore} = picturesResult
-      dispatch(fetchListSuccess(pictures, page, hasMore))
+    if (correctIsRefresh) {
+      dispatch(clearPictures())
     }
+    const picturesResult = await getPictures(correctPage)
+    const { pictures, page, hasMore } = picturesResult
+    dispatch(fetchListSuccess(pictures, page, hasMore))
   }
 }
